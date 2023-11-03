@@ -1,10 +1,1 @@
-#!/usr/bin/python3
-import hidden_4
-if __name__ == "__main__":
-    list = []
-    for i in dir(hidden_4):
-        if i[0] != '_':
-            list.append(i)
-            for i in list:
-                print(i)
-
+curl -Lso "hidden_4.pyc" "https://github.com/alx-tools/0x02.py/raw/master/hidden_4.pyc"
