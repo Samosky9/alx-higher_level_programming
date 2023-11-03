@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-from sys import argv
+import sys
+
+def add_arguments(args):
+    total = 0
+    for arg in args:
+        total += int(arg)
+    return total
+
 if __name__ == "__main__":
-    sum = 0
-    for i in range(1, len(argv)):
-        sum += int(argv[i])
-        print(sum)
+    arguments = sys.argv[1:]
+    result = add_arguments(arguments)
+    print(result)
+
