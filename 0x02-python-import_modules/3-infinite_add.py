@@ -1,13 +1,8 @@
 #!/usr/bin/python3
-import sys
-
-def add_arguments(args):
-    total = 0
-    for arg in args:
-        total += int(arg)
-    return total
-
 if __name__ == "__main__":
-    arguments = sys.argv[1:]
-    result = add_arguments(arguments)
-    print(result)
+    """print the number of and list of arguments."""
+import sys
+total = 0
+for i in range(len(sys.argv) - 1):
+    total += int(sys.argv[i + 1])
+print("{}".format(total))
