@@ -11,4 +11,3 @@ if __name__ == "__main__":
     arguments = sys.argv[1:]
     result = add_arguments(arguments)
     print(result)
-
