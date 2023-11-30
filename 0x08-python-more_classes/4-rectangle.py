@@ -71,7 +71,63 @@ class Rectangle:
         """
 
         if not isinstance(value, int):
-            raise TypeError("height must be an integer")
+            raise TypeError("width must be an integer")
         if value < 0:
-            raise ValueError("height must be >= 0")
+            raise ValueError("width must be >= 0")
         self.__height = value
+
+    def area(self):
+        """
+
+            Public instance method: def area(self): that returns
+
+            the rectangle area
+
+        """
+
+        return self.width * self.height
+
+    def perimeter(self):
+        """
+
+            Public instance method: def perimeter(self):
+            that returns the rectangle perimeter:
+
+                if width or height is equal to 0, perimeter is equal to 0
+
+        """
+
+        if self.width == 0 or self.height == 0:
+            return 0
+
+        return 2 * (self.width + self.height)
+
+    def __str__(self):
+        """
+
+            This method returns the rectangle
+
+            in # values (str of the rectangle)
+
+        """
+
+        rectangle = ""
+        if self.width == 0 or self.height == 0:
+            return rectangle
+
+        for i in range(self.height):
+            rectangle += '#' * self.width + '\n'
+
+        rectangle = rectangle[:-1]
+        return rectangle
+
+    def __repr__(self):
+        """
+
+            Method that returns the string represantion of the instance
+
+            Returns - Rectangle(width, height)
+
+        """
+
+        return "Rectangle({:d}, {:d})".format(self.width, self.height)
