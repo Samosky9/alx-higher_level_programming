@@ -1,25 +1,35 @@
 #!/usr/bin/node
-
 const request = require('request');
-const id = process.argv[2];
-const url = `https://swapi-api.alx-tools.com/api/films/${id}`;
+const url = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`;
 
-request.get(url, (error, response, body) => {
-  if (error) {
-    console.log(error);
-  } else {
-    const content = JSON.parse(body);
-    const characters = content.characters;
-    // console.log(characters);
-    for (const character of characters) {
-      request.get(character, (error, response, body) => {
-        if (error) {
-          console.log(error);
-        } else {
-          const names = JSON.parse(body);
-          console.log(names.name);
-        }
-      });
-    }
-  }
-});
+function getEndpoints () {
+  return new Promise((resolve, reject) => {
+    request.get(url, (err, res, body) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(JSON.parse(body).characters);
+    });
+  });
+}
+
+async function getCharacters (characters) {
+  for (const character of characters) await getCharacter(character);
+}
+
+function getCharacter (character) {
+  return new Promise((resolve, reject) => {
+    request.get(character, (err, res, body) => {
+      if (err) console.log(err);
+      console.log(JSON.parse(body).name);
+      resolve();
+    });
+  });
+}
+
+getEndpoints()
+  .then(data => {
+    return getCharacters(data);
+  }).catch(err => {
+    console.log(err);
+  });
